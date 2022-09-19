@@ -1,0 +1,12 @@
+.app-container {
+  width:100%;
+  margin:0;
+  box-sizing: border-box;
+}
+
+.main {
+  min-height: 90vh;
+  height: auto;
+  width: 80%;
+  margin: 0 auto;
+} 
