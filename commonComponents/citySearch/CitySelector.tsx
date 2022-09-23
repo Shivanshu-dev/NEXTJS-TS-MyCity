@@ -1,24 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { ALLCITIES } from '../../static/StaticData/cityData';
-// import { useLocation } from 'react-router-dom';
-// import { ALLCITIES } from '../../staticHelpers/cityData';
-// import './CitySelector.css';
 
 function CitySelector() {
   const [showSelector, setShowSelector] = useState(false);
-  // const { pathname } = useLocation();
+  const [selectedCityIndex , setIndex] = useState(ALLCITIES[0].id);
 
-  // useEffect(() => {
-  //   if (pathname && pathname === '/') {
-  //     setShowSelector(() => true);
-  //   } else {
-  //     setShowSelector(() => false);
-  //   }
-  // }, [pathname]);
-
-  const setCityId = (e:any)=>{
-console.log(e , "console");
+  const setCityId = (e :any)=>{
+console.log(e.target.value , "console");
+setIndex(()=> e.target.value)
   }
 
   return (
@@ -26,11 +16,11 @@ console.log(e , "console");
       <div className="city-container">
         <Form.Group className="mb-3">
           <Form.Label>Select your City</Form.Label>
-          <Form.Select onSelect={setCityId}>
-            {ALLCITIES.map((item) => (
-              <option onChange={setCityId} key={item.id}>{item.name}</option>
+          <select onChange={setCityId} value={selectedCityIndex}>
+            {ALLCITIES.map((item:any) => (
+              <option value={item.id} key={item.id}>{item.name}</option>
             ))}
-          </Form.Select>
+          </select>
         </Form.Group>
       </div>
     </div>

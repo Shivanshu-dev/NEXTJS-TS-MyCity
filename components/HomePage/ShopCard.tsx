@@ -1,18 +1,27 @@
+import {useRouter} from 'next/router';
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { SHOPDATAOFCITY, ShopsInCity } from '../../interfaces/CommonInterfaces';
 
-function ShopCard() {
+function ShopCard({data}:{data : SHOPDATAOFCITY}) {
+  const {name , id ,shopImage,timing , shopDescription} = data;
+  const router = useRouter();
+
+  const redirectToShop = (id:number)=>{
+    router.push(`/shop/${id}/allproducts`);
+  }
+
   return (
     <Card >
-      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Img style={{width:'auto' , maxHeight:'236px' , objectFit:'contain'}} variant="top" src={shopImage} />
       <Card.Body>
-        <Card.Title>Shop Name</Card.Title>
+        <Card.Title>{name}</Card.Title>
         <Card.Text>
-          Shop description what the shop sells
-          <Button variant="outline-danger">Shop Timing Variant toggle if open close</Button>
+          {shopDescription}
+          <Button variant="outline-danger">{timing}</Button>
         </Card.Text>
-        <Button variant="primary">Go to shop byonClick</Button>
+        <Button onClick={()=>redirectToShop(id)} variant="primary">Go to shop </Button>
       </Card.Body>
     </Card>
   );

@@ -8,11 +8,23 @@ export interface SHOPDATAOFCITY {
     cityId:number,
     name:string,
     productsInShop : Array<any>,
-    shopImage : string
+    shopImage : string,
+    timing: string,
+    shopDescription: string
 }
 
 export interface ShopsInCity {
     id:number,
     cityId:number,
     shopList: Array<SHOPDATAOFCITY>
+}
+
+export interface ProductsInShop {
+    id:number,
+    shopID:number,
+    cityID:number,
+    name: string,
+    price: number,
+    imageURL:string,
+    qty:number,
 }
